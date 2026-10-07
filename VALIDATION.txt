@@ -1,0 +1,1 @@
+V14: 17 backend tests, 8 frontend render checks and production build for /app/ passed. Google verification mocked: nonce/claims, one-time use, password-confirmed linking, cookie attributes, trusted Origin checked. Real Google OAuth client, live Render deployment, Docker container and browser interaction not tested.

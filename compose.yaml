@@ -1,0 +1,13 @@
+services:
+  codeguard:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      CODEGUARD_ALLOW_SIGNUP: ${CODEGUARD_ALLOW_SIGNUP:-1}
+    volumes:
+      - codeguard-data:/data
+    restart: unless-stopped
+volumes:
+  codeguard-data:

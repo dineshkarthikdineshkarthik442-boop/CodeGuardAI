@@ -1,0 +1,23 @@
+# Free demo only: SQLite data is ephemeral. Do not use for durable accounts/reports.
+services:
+  - type: web
+    name: codeguard-ai
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: CODEGUARD_HOST
+        value: 0.0.0.0
+      - key: CODEGUARD_PRODUCTION
+        value: "1"
+      - key: CODEGUARD_COOKIE_SECURE
+        value: "1"
+      - key: CODEGUARD_ENABLE_DOCS
+        value: "0"
+      - key: CODEGUARD_ALLOWED_ORIGINS
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
