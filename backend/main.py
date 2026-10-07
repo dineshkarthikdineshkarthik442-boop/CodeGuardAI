@@ -40,10 +40,10 @@ def analyze_source(source, name):
 
 
 @app.get("/")
-def root(): return {"name": "CodeGuard AI", "version": "V14.0", "status": "online"}
+def root(): return {"name": "CodeGuard AI", "version": "V14.1", "status": "online"}
 
 @app.get("/health")
-def health(): return {"status": "ok", "version": "V14.0"}
+def health(): return {"status": "ok", "version": "V14.1"}
 
 @app.post("/api/analyze")
 async def analyze(file: UploadFile = File(...)):

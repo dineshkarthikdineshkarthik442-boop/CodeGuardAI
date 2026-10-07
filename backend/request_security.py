@@ -56,7 +56,7 @@ class RequestSecurity:
             return await receive()
         async def secure_send(message):
             if message['type']=='http.response.start':
-                message['headers']=list(message.get('headers',[]))+[(b'x-content-type-options',b'nosniff'),(b'x-frame-options',b'DENY'),(b'referrer-policy',b'no-referrer'),(b'cache-control',b'no-store')]
+                message['headers']=list(message.get('headers',[]))+[(b'x-content-type-options',b'nosniff'),(b'x-frame-options',b'DENY'),(b'referrer-policy',b'strict-origin-when-cross-origin'),(b'cache-control',b'no-store')]
                 message['headers'].append((b'cross-origin-opener-policy',b'same-origin-allow-popups'))
                 if os.getenv('CODEGUARD_PRODUCTION','0')=='1':
                     message['headers'].extend([(b'strict-transport-security',b'max-age=31536000'),(b'content-security-policy',b"default-src 'self'; script-src 'self' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com; frame-src https://accounts.google.com; connect-src 'self' https://accounts.google.com; img-src 'self' data: https://*.googleusercontent.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'")])
