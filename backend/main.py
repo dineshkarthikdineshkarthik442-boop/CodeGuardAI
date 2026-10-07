@@ -25,7 +25,7 @@ try:
 except Exception:
     generate_security_tests = None
 
-app = FastAPI(title="CodeGuard AI V13", version="14.0.0", docs_url="/docs" if os.getenv("CODEGUARD_ENABLE_DOCS","1")=="1" else None, redoc_url=None)
+app = FastAPI(title="CodeGuard AI V14.2", version="14.2.0", docs_url="/docs" if os.getenv("CODEGUARD_ENABLE_DOCS","1")=="1" else None, redoc_url=None)
 init_db()
 from request_security import RequestSecurity
 app.add_middleware(RequestSecurity)
@@ -40,10 +40,10 @@ def analyze_source(source, name):
 
 
 @app.get("/")
-def root(): return {"name": "CodeGuard AI", "version": "V14.1", "status": "online"}
+def root(): return {"name": "CodeGuard AI", "version": "V14.2", "status": "online"}
 
 @app.get("/health")
-def health(): return {"status": "ok", "version": "V14.1"}
+def health(): return {"status": "ok", "version": "V14.2"}
 
 @app.post("/api/analyze")
 async def analyze(file: UploadFile = File(...)):

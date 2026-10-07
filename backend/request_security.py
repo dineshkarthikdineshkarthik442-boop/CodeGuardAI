@@ -13,7 +13,7 @@ class RequestSecurity:
         if scope['type']!='http':return await self.app(scope,receive,send)
         path=scope['path'];headers=dict(scope['headers'])
         if scope['method']=='OPTIONS':return await self.app(scope,receive,send)
-        async def reject(status,message):await JSONResponse({'detail':message},status_code=status)(scope,receive,send)
+        async def reject(status,message):await JSONResponse({'detail':message},status_code=status,headers={'Cache-Control':'no-store','Pragma':'no-cache','Vary':'Cookie, Authorization'})(scope,receive,send)
         public=('/api/v9/auth/login','/api/v9/auth/register','/api/v14/auth/google/config','/api/v14/auth/google')
         allowed={x.strip() for x in os.getenv('CODEGUARD_ALLOWED_ORIGINS','http://localhost:5173,http://127.0.0.1:5173').split(',')}
         origin=headers.get(b'origin',b'').decode('latin-1')
